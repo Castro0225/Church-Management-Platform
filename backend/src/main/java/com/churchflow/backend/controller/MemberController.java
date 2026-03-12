@@ -50,11 +50,4 @@ public class MemberController {
         memberService.deleteMember(id);
         return ResponseEntity.noContent().build();
     }
-
-    @PostMapping("/{memberId}/ministries/{ministryId}")
-    public ResponseEntity<String> addMemberToMinistry(@PathVariable Long memberId,
-                                                      @PathVariable Long ministryId) {
-        memberService.addMemberToMinistry(memberId, ministryId);
-        return ResponseEntity.ok("Membro adicionado ao ministério com sucesso.");
-    }
 }

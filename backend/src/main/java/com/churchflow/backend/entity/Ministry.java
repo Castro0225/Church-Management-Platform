@@ -24,8 +24,8 @@ public class Ministry {
     @Enumerated(EnumType.STRING)
     private MinistryStatus status;
 
-    @ManyToMany(mappedBy = "ministries")
-    private Set<Member> members = new HashSet<>();
+    @OneToMany(mappedBy = "ministry", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<MemberMinistry> memberMinistries = new HashSet<>();
 
     public Ministry() {
     }
@@ -66,11 +66,11 @@ public class Ministry {
         this.status = status;
     }
 
-    public Set<Member> getMembers() {
-        return members;
+    public Set<MemberMinistry> getMemberMinistries() {
+        return memberMinistries;
     }
 
-    public void setMembers(Set<Member> members) {
-        this.members = members;
+    public void setMemberMinistries(Set<MemberMinistry> memberMinistries) {
+        this.memberMinistries = memberMinistries;
     }
 }

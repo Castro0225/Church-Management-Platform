@@ -31,13 +31,8 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private MemberStatus status;
 
-    @ManyToMany
-    @JoinTable(
-            name = "member_ministries",
-            joinColumns = @JoinColumn(name = "member_id"),
-            inverseJoinColumns = @JoinColumn(name = "ministry_id")
-    )
-    private Set<Ministry> ministries = new HashSet<>();
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<MemberMinistry> memberMinistries = new HashSet<>();
 
     public Member() {
     }
@@ -102,19 +97,11 @@ public class Member {
         this.status = status;
     }
 
-    public Set<Ministry> getMinistries() {
-        return ministries;
+    public Set<MemberMinistry> getMemberMinistries() {
+        return memberMinistries;
     }
 
-    public void setMinistries(Set<Ministry> ministries) {
-        this.ministries = ministries;
-    }
-
-    public void addMinistry(Ministry ministry) {
-        this.ministries.add(ministry);
-    }
-
-    public void removeMinistry(Ministry ministry) {
-        this.ministries.remove(ministry);
+    public void setMemberMinistries(Set<MemberMinistry> memberMinistries) {
+        this.memberMinistries = memberMinistries;
     }
 }
